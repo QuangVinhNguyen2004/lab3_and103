@@ -13,11 +13,16 @@ app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
 });
 
-const uri = 'mongodb+srv://duylh17:ULyS263rULRAxv0Y@cluster0.0n8qgpd.mongodb.net/md18306';
+const COMMON = require('./COMMON');
+
+const uri = COMMON.uri;
 
 const mongoose = require('mongoose');
 
 const carModel = require('./carModel');
+
+const apiMobile = require('./api');
+app.use('/api', apiMobile);
 
 app.get('/', async (req, res) => {
     await mongoose.connect(uri);
